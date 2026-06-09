@@ -15,6 +15,11 @@ public class EmetteurAgent extends Agent {
                 msg.addReceiver(new AID("Alice", AID.ISLOCALNAME));
                 if (counter == 1) {
                     msg.setContent("Quitter");
+                    send(msg);
+                    System.out.println("Message Quitter envoye. Bob se supprime aussi.");
+                    stop();        // ← stops the TickerBehaviour
+                    doDelete();    // ← kills Bob agent
+                    return;
                 } else {
                     msg.setContent("Hello, es-tu la ?");
                     counter++;
